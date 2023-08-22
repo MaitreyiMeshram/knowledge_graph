@@ -1,0 +1,81 @@
+1. load csv with headers from 'file:///biomarkersrelation-Sheet2.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Is_Associated_with{relation:row.relation}]->(y)
+
+2.load csv with headers from 'file:///biomarkersrelation-Sheet3.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Has_Measurement_Method{relation:row.relation}]->(y)
+
+3.load csv with headers from 'file:///biomarkersrelation-Sheet4.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Indicates{relation:row.relation}]->(y)
+
+4.load csv with headers from 'file:///biomarkersrelation-Sheet5.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Correlates_With{relation:row.relation}]->(y)
+
+5.load csv with headers from 'file:///biomarkersrelation-Sheet6.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Predicts{relation:row.relation}]->(y)
+
+6.load csv with headers from 'file:///biomarkersrelation-Sheet8.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Is_Measured_with{relation:row.relation}]->(y)
+
+7.load csv with headers from 'file:///biomarkersrelation-Sheet12.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Is_Altered_in_Condition{relation:row.relation}]->(y)
+
+8.load csv with headers from 'file:///biomarkersrelation-Sheet13.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Is_Biomarker_of{relation:row.relation}]->(y)
+
+9. load csv with headers from 'file:///biomarkersrelation-Sheet15.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Has_Prognostic_Value
+{relation:row.relation}]->(y)
+
+10.load csv with headers from 'file:///biomarkersrelation-Sheet16.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Is_Found_in
+{relation:row.relation}]->(y)
+
+11.load csv with headers from 'file:///biomarkersrelation-Sheet17.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Is_Expressed_in_Tissue
+{relation:row.relation}]->(y)
+
+12.load csv with headers from 'file:///biomarkersrelation-Sheet18.csv' as row 
+merge(x:node{id:row.x_id,name:row.x_name,type:row.x_type,source:row.x_source})
+merge(y:node{id:row.y_id,name:row.
+y_name,type:row.y_type,source:row.y_source})
+merge(x)-[:Is_Involved_in_Metabolic_Pathway
+{relation:row.relation}]->(y)
+13.
+MATCH (n:node)
+WITH DISTINCT n.source AS source, collect(DISTINCT n) AS class
+CALL apoc.create.addLabels(class, [apoc.text.upperCamelCase(source)]) YIELD node
+RETURN node;
+
